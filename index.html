@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <input id="connect_button" type="button" value="Connect" onclick="connectWallet()" style="display: none"></input>
+  <p id="account_address" style="display: none"></p>
+  <p id="web3_message"></p>
+  <p id="contract_state"></p>
+  <p id="account_state"></p>
+  <div id="claim_buttons"></div>
+  <input type="input"  value="1" id="nft_mint_amount"></input>
+  <input type="button" value="Mint" onclick="_NFTMint()"></input>
+  <br>
+  <input type="input"  value="1" id="nft_mint_whitelist_amount"></input>
+  <input type="button" value="Mint whitelist" onclick="_NFTMintWhitelist()"></input>
+  <br>
+  <input type="input"  value="" id="claim_token_id"></input>
+  <input type="button" value="Claim" onclick="_minterClaim()"></input>
+  <br>
+  <input type="button" value="Claim all" onclick="_minterClaimAll()"></input>
+  <br>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.5/web3.min.js"></script>
+  <script type="text/javascript" src="blockchain_stuff.js"></script>
+</body>
+</html>
+
+<script>
+  function _NFTMint()
+  {
+    amount = document.getElementById("nft_mint_amount").value
+    NFTMint(amount)
+  }
+
+  function _NFTMintWhitelist()
+  {
+    amount = document.getElementById("nft_mint_whitelist_amount").value
+    NFTMintWhitelist(amount)
+  }
+
+  function _minterClaim()
+  {
+    token_id = document.getElementById("claim_token_id").value
+    minterClaim(token_id)
+  }
+
+  function _minterClaimAll()
+  {
+    minterClaimAll()
+  }
+</script>
