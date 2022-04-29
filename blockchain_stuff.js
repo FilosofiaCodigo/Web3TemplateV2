@@ -1,6 +1,6 @@
 const NETWORK_ID = 4
 
-const MY_CONTRACT_ADDRESS = "0x002cc85C772b8719417B88Ae2dFB64EcD4995648"
+const MY_CONTRACT_ADDRESS = "0x76ECf18dB23170b95308465aD4E6e3d44e9C36c6"
 const MY_CONTRACT_ABI_PATH = "./json_abi/MyContract.json"
 var my_contract
 
@@ -75,7 +75,7 @@ async function loadDapp() {
               console.error("An error occurred: "+err)
             } else if (accounts.length > 0)
             {
-              onWalletConnected()
+              onWalletConnectedCallback()
               document.getElementById("account_address").style.display = "block"
             } else
             {
@@ -95,25 +95,34 @@ async function loadDapp() {
 async function connectWallet() {
   await window.ethereum.request({ method: "eth_requestAccounts" })
   accounts = await web3.eth.getAccounts()
-  onWalletConnected()
+  onWalletConnectedCallback()
 }
 
 loadDapp()
 
 const onContractInitCallback = async () => {
+  var hello = await my_contract.methods.hello().call()
+  var count = await my_contract.methods.count().call()
+  var last_writer = await my_contract.methods.count().call()
+
+  var contract_state = "Hello: " + hello
+    + ", Count: " + count
+    + ", Last Writer: " + last_writer
+  
+  document.getElementById("contract_state").textContent = contract_state;
 }
 
-const onWalletConnected = async () => {
+const onWalletConnectedCallback = async () => {
 }
 
 
-//// Minter ////
+//// Functions ////
 
-const minterClaim = async (token_id) => {
-  const result = await minter_contract.methods.claim(token_id)
+const setHello = async (_hello) => {
+  const result = await my_contract.methods.setHello(_hello)
   .send({ from: accounts[0], gas: 0, value: 0 })
   .on('transactionHash', function(hash){
-    document.getElementById("web3_message").textContent="Claiming...";
+    document.getElementById("web3_message").textContent="Executing...";
   })
   .on('receipt', function(receipt){
     document.getElementById("web3_message").textContent="Success.";    })

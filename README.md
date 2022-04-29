@@ -1,5 +1,5 @@
-# LostApesContracts
+## Web3 Template
 
-* NFT `0x002cc85C772b8719417B88Ae2dFB64EcD4995648`
-* Token `0xA93dFeBB543972C9a8241b0E71dE3a7290101807`
-* Minter `0xbEdB996F47e7C6667a671496E5C7c5A1d719FDB1`
+### Run
+
+`lite-server`
