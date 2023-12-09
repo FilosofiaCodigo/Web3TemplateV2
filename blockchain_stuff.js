@@ -1,6 +1,6 @@
-const NETWORK_ID = 4
+const NETWORK_ID = 5
 
-const MY_CONTRACT_ADDRESS = "0x76ECf18dB23170b95308465aD4E6e3d44e9C36c6"
+const MY_CONTRACT_ADDRESS = "0x47cd7ad1741c93FBb44c3bb88158f8bC60B3CA5D"
 const MY_CONTRACT_ABI_PATH = "./json_abi/MyContract.json"
 var my_contract
 
@@ -85,7 +85,7 @@ async function loadDapp() {
         };
         awaitContract();
       } else {
-        document.getElementById("web3_message").textContent="Please connect to Rinkeby";
+        document.getElementById("web3_message").textContent="Please connect to Goerli";
       }
     });
   };
